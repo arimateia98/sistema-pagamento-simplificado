@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
@@ -27,11 +27,5 @@ class User extends Authenticatable
 
     protected $casts = ['password' => 'hashed',];
 
-    private $tipoUsuario;
-
-    public function tipoUsuario()
-    {
-        return $this->belongsTo(TipoUsuario::class);
-    }
 
 }
