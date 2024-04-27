@@ -14,7 +14,6 @@ class CreateUsersTable extends Migration
     {
 
 
-
         Schema::create('tipos_usuario', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
@@ -27,7 +26,7 @@ class CreateUsersTable extends Migration
             ['tipo' => 'Lojista'],
         ]);
 
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('email')->unique();
@@ -68,6 +67,6 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('usuario');
         Schema::dropIfExists('tokens_reset_senha');
         Schema::dropIfExists('sessoes');
-         Schema::dropIfExists('tipos_usuario');
+        Schema::dropIfExists('tipos_usuario');
     }
 }

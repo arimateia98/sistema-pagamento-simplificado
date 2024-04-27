@@ -24,7 +24,7 @@ class StoreUsuarioRequest extends FormRequest
         return [
             'nome' => 'required|string|max:255',
             'email' => 'required|email|unique:usuarios,email',
-            'documento' => 'required|unique:usuarios,documento', 
+            'documento' => 'required|unique:usuarios,documento',
             'tipo_usuario_id' => 'required|exists:tipos_usuario,id',
             'senha' => 'required|string|min:6',
         ];
