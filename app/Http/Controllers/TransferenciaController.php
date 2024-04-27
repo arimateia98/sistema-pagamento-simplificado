@@ -19,6 +19,7 @@ class TransferenciaController extends Controller
     public function transferir (TransferenciaRequest $request) : JsonResponse
     {
 
+
         return new JsonResponse(
             $this->service->transferir(
                 $request->id_transferidor,
