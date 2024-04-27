@@ -19,4 +19,14 @@ class UsuarioService
         return $novoUsuario->save();
     }
 
+    public function get()
+    {
+        return Usuario::all();
+    }
+
+    public function destroyAll()
+    {
+        return Usuario::truncate();
+    }
+
 }

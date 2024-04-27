@@ -11,10 +11,27 @@ use App\Http\Requests\StoreUsuarioRequest;
 
 class UsuarioController extends Controller
 {
-    public function store(StoreUsuarioRequest $request) : JsonResponse
+
+    protected UsuarioService $service;
+
+    public function __construct(UsuarioService $usuarioService) {
+        $this->service = $usuarioService;
+    }
+
+
+    public function store (StoreUsuarioRequest $request) : JsonResponse
     {
-        $service = new UsuarioService();
-        return new JsonResponse($service->store($request), 200);
+        return new JsonResponse($this->service->store($request), 200);
+    }
+
+    public function get () : JsonResponse
+    {
+        return new JsonResponse($this->service->get(),200);
+    }
+
+    public function destroyAll () : JsonResponse
+    {
+        return new JsonResponse($this->service->destroyAll(),200);
     }
 
 }

@@ -6,3 +6,5 @@ use App\Http\Controllers\UsuarioController;
 
 
 Route::post('/usuarios', [UsuarioController::class,'store']);
+Route::get('/usuarios', [UsuarioController::class,'get']);
+Route::delete('/usuarios',[UsuarioController::class,'destroyAll']);
