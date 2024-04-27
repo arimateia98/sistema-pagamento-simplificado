@@ -20,7 +20,7 @@ class TransferenciaService
             return $this->realizarTransferencia($usuarioTransferidor,$usuarioReceptor,$valor);
         } else {
             return [
-                "retorno" => false,
+                "status" => false,
                 "mensagem" => "A transfêrencia não foi autorizada"
             ];
         }
@@ -28,8 +28,8 @@ class TransferenciaService
 
     private function obterAutorizacao ()
     {
-        $resposta = AutorizacaoService::obterAutorizacao();
-        if ($resposta['message'] == "Autorizado") {
+        $status = AutorizacaoService::obterAutorizacao();
+        if ($status['message'] == "Autorizado") {
             return true;
         }
         return false;
@@ -53,12 +53,12 @@ class TransferenciaService
         } catch (Exception $e) {
             DB::rollback();
             return [
-                "resposta" => false,
-                 $e->getMessage()
+                "status" => false,
+                 "mensagem" => $e->getMessage()
             ];
         }
         return [
-            "resposta" => true,
+            "status" => true,
             "mensagem" => "A Transfêrencia foi realizada com sucesso"
         ];
     }
