@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
-
-    protected $primaryKey = 'documento'; // Define o atributo 'documento' como chave primária
-
+    
     protected $fillable = [
         'nome',
         'email',
@@ -27,11 +26,5 @@ class User extends Authenticatable
 
     protected $casts = ['password' => 'hashed',];
 
-    private $tipoUsuario;
-
-    public function tipoUsuario()
-    {
-        return $this->belongsTo(TipoUsuario::class);
-    }
 
 }

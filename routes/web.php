@@ -1,12 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+
 
 Route::get('/', function () {
-   dd("to aqui");
+   return view('/welcome');
 });
 
-Route::get('/usuarios', function () {
-    dd("to aqui");
- });
  
