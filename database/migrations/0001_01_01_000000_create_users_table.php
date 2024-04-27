@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('tipo');
         });
-        
+
 
         //inserindo tipos de usuario
         DB::table('tipos_usuario')->insert([
@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email')->unique();
-            $table->string('cpf_cnpj')->unique();
+            $table->string('documento')->unique();
             $table->unsignedBigInteger('tipo_usuario_id');
             $table->foreign('tipo_usuario_id')->references('id')->on('tipos_usuario');
             $table->string('senha');
@@ -55,9 +55,9 @@ class CreateUsersTable extends Migration
             $table->integer('last_activity')->index();
         });
 
-      
 
-       
+
+
     }
 
     /**
