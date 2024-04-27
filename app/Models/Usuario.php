@@ -69,7 +69,7 @@ class Usuario extends Authenticatable
             throw new Exception("Valor inválido para realizar a transação");
         }
         if ($this->saldo - $valor < 0) {
-            throw new Exception("Saldo insuficiente para saque");
+            throw new Exception("Saldo insuficiente para transfêrencia");
         }
     }
 
