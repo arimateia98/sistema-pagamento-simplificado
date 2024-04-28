@@ -41,7 +41,7 @@ class TransferenciaService
      * @param $usuarioReceptor
      * @return string
      */
-    public function realizarTransferencia(Usuario $usuarioTransferidor, Usuario $usuarioReceptor, Float $valor ): array
+    private function realizarTransferencia(Usuario $usuarioTransferidor, Usuario $usuarioReceptor, Float $valor ): array
     {
         DB::beginTransaction();
         try {
@@ -57,9 +57,11 @@ class TransferenciaService
                  "mensagem" => $e->getMessage()
             ];
         }
+
         return [
             "status" => true,
             "mensagem" => "A Transfêrencia foi realizada com sucesso"
         ];
     }
+
 }
