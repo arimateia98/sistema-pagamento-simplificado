@@ -30,7 +30,7 @@ class Usuario extends Authenticatable
 
     protected $casts = ['password' => 'hashed',];
 
-    public function podeTransferir () : bool
+    public function podeTransferir() : bool
     {
         /**
          * o único tipo que pode transferir dinheiro
@@ -44,19 +44,19 @@ class Usuario extends Authenticatable
      * retornará True
      * Se o usuario tiver saldo suficiente para sacar o dinheiro
      */
-    public function transferir (Float $valor) : void
+    public function transferir(Float $valor) : void
     {
         $this->validaTransferencia($valor);
         $this->saldo -= $valor;
     }
 
-    public function receber (Float $valor) : void
+    public function receber(Float $valor) : void
     {
         $this->saldo += $valor;
     }
 
     /**
-     * @param $valor
+     * @param  $valor
      * @return void
      * @throws Exception
      */

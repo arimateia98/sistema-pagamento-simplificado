@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Http;
 class TransferenciaService
 {
 
-    public function transferir ($idTransferidor, $idReceptor, $valor)
+    public function transferir($idTransferidor, $idReceptor, $valor)
     {
         $usuarioTransferidor = Usuario::find($idTransferidor);
         $usuarioReceptor = Usuario::find($idReceptor);
 
 
-        if ($this->obterAutorizacao()){
-            return $this->realizarTransferencia($usuarioTransferidor,$usuarioReceptor,$valor);
+        if ($this->obterAutorizacao()) {
+            return $this->realizarTransferencia($usuarioTransferidor, $usuarioReceptor, $valor);
         } else {
             return [
                 "status" => false,
@@ -26,7 +26,7 @@ class TransferenciaService
         }
     }
 
-    private function obterAutorizacao ()
+    private function obterAutorizacao()
     {
         $status = AutorizacaoService::obterAutorizacao();
         if ($status['message'] == "Autorizado") {
@@ -36,12 +36,12 @@ class TransferenciaService
     }
 
     /**
-     * @param $usuarioTransferidor
-     * @param $valor
-     * @param $usuarioReceptor
+     * @param  $usuarioTransferidor
+     * @param  $valor
+     * @param  $usuarioReceptor
      * @return string
      */
-    private function realizarTransferencia(Usuario $usuarioTransferidor, Usuario $usuarioReceptor, Float $valor ): array
+    private function realizarTransferencia(Usuario $usuarioTransferidor, Usuario $usuarioReceptor, float $valor): array
     {
         DB::beginTransaction();
         try {
@@ -54,7 +54,7 @@ class TransferenciaService
             DB::rollback();
             return [
                 "status" => false,
-                 "mensagem" => $e->getMessage()
+                "mensagem" => $e->getMessage()
             ];
         }
 

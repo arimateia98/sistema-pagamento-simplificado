@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 class AutorizacaoService
 {
 
-    public static function  obterAutorizacao()
+    public static function obterAutorizacao()
     {
         try {
             // Fazendo uma requisição GET para a API externa

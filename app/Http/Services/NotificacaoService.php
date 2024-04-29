@@ -3,13 +3,14 @@
 namespace App\Http\Services;
 
 use App\Models\Usuario;
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class NotificacaoService
 {
 
 
-    public static function enviarNotificacao ($idTransferidor, $idReceptor, $valor) : void
+    public static function enviarNotificacao($idTransferidor, $idReceptor, $valor): void
     {
         $usuarioTransferidor = Usuario::find($idTransferidor);
         $usuarioReceptor = Usuario::find($idReceptor);
@@ -18,7 +19,7 @@ class NotificacaoService
         $mensagemRecebimento = self::getMensagemRecebimento($usuarioTransferidor, $valor);
 
         self::enviaEmail($usuarioTransferidor->email, $mensagemEnvio);
-        self::enviaEmail($usuarioReceptor->email,$mensagemRecebimento);
+        self::enviaEmail($usuarioReceptor->email, $mensagemRecebimento);
 
 
     }
@@ -39,18 +40,20 @@ class NotificacaoService
     }
 
     /**
-     * @param $emailUsuario
-     * @param string $mensagemEnvio
+     * @param  $emailUsuario
+     * @param  string $mensagemEnvio
      * @return array|mixed|void
      */
     public static function enviaEmail(string $emailUsuario, string $mensagemEnvio): mixed
     {
         try {
             // Fazendo uma requisição POST para a API externa
-            $response = Http::post('https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6', [
-                'email' => $emailUsuario,
-                'mensagem' => $mensagemEnvio
-            ]);
+            $response = Http::post(
+                'https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6', [
+                    'email' => $emailUsuario,
+                    'mensagem' => $mensagemEnvio
+                ]
+            );
 
             // Verificando se a requisição foi bem-sucedida
             if ($response->successful()) {
