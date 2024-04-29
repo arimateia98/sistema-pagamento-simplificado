@@ -8,7 +8,7 @@ use App\Http\Controllers\TransferenciaController;
 
 Route::post('/usuarios', [UsuarioController::class,'store']);
 Route::get('/usuarios', [UsuarioController::class,'get']);
-Route::delete('/usuarios',[UsuarioController::class,'destroyAll']);
+Route::delete('/usuarios', [UsuarioController::class,'destroyAll']);
 
 
-Route::post('/transferir',[TransferenciaController::class,'transferir']);
+Route::post('/transferir', [TransferenciaController::class,'transferir']);

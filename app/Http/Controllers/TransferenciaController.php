@@ -17,23 +17,29 @@ class TransferenciaController extends Controller
     {
         $this->service = $transferenciaService;
     }
-    public function transferir (TransferenciaRequest $request) : JsonResponse
+
+    public function transferir(TransferenciaRequest $request): JsonResponse
     {
 
         $resposta = $this->service->transferir(
             $request->id_transferidor,
             $request->id_receptor,
-            $request->valor_transferencia);
+            $request->valor_transferencia
+        );
+
         $status = 400;
-        if ($resposta['status'])  {
+        if ($resposta['status']) {
             $status = 200;
-            NotificacaoService::enviarNotificacao($request->id_transferidor,
+            NotificacaoService::enviarNotificacao(
+                $request->id_transferidor,
                 $request->id_receptor,
-                $request->valor_transferencia);
+                $request->valor_transferencia
+            );
         }
 
         return new JsonResponse(
-            $resposta['mensagem'],$status);
+            $resposta['mensagem'], $status
+        );
 
     }
 }

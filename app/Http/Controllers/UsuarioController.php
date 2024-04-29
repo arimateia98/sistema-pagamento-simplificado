@@ -14,24 +14,25 @@ class UsuarioController extends Controller
 
     protected UsuarioService $service;
 
-    public function __construct(UsuarioService $usuarioService) {
+    public function __construct(UsuarioService $usuarioService)
+    {
         $this->service = $usuarioService;
     }
 
 
-    public function store (StoreUsuarioRequest $request) : JsonResponse
+    public function store(StoreUsuarioRequest $request): JsonResponse
     {
         return new JsonResponse($this->service->store($request), 200);
     }
 
-    public function get () : JsonResponse
+    public function get(): JsonResponse
     {
-        return new JsonResponse($this->service->get(),200);
+        return new JsonResponse($this->service->get(), 200);
     }
 
-    public function destroyAll () : JsonResponse
+    public function destroyAll(): JsonResponse
     {
-        return new JsonResponse($this->service->destroyAll(),200);
+        return new JsonResponse($this->service->destroyAll(), 200);
     }
 
 }

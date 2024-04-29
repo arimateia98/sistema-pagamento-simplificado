@@ -13,10 +13,12 @@ class TransferenciaRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        $response = new JsonResponse([
+        $response = new JsonResponse(
+            [
             'message' => 'Os dados fornecidos são inválidos.',
             'errors' => $validator->errors(),
-        ], 404);
+            ], 404
+        );
 
         throw new Exception($response);
     }

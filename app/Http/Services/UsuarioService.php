@@ -7,7 +7,7 @@ use App\Models\Usuario;
 class UsuarioService
 {
 
-    public function store ($usuario): bool
+    public function store($usuario): bool
     {
         $novoUsuario = new Usuario();
         $novoUsuario->nome = $usuario->nome;
