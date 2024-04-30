@@ -33,7 +33,7 @@ class NotificacaoService
         return $mensagemEnvio;
     }
 
-    private static function getMensagemRecebimento($usuarioTransferidor, $valor)
+    public static function getMensagemRecebimento($usuarioTransferidor, $valor)
     {
         $mensagemRecebimento = "Você recebeu uma transfêrencia de $usuarioTransferidor->nome de valor R$: $valor";
         return $mensagemRecebimento;

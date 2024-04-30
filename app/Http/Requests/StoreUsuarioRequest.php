@@ -43,7 +43,6 @@ class StoreUsuarioRequest extends FormRequest
             'tipo_usuario_id.required' => 'O campo tipo de usuário é obrigatório.',
             'tipo_usuario_id.exists' => 'O tipo de usuário selecionado é inválido.',
             'senha.required' => 'O campo senha é obrigatório.',
-            'senha.min' => 'aaaaaaaaaaaaaaaaaaaaaaa.',
         ];
     }
 }
