@@ -1,6 +1,6 @@
 name: PSR Check
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   psr_check:
@@ -16,7 +16,13 @@ jobs:
           php-version: '8.2'
 
       - name: Install dependencies
-        run: composer install --no-interaction --no-suggest
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Generate app key
+        run: php artisan key:generate
 
       - name: Run PHP_CodeSniffer
         run: vendor/bin/phpcs --standard=PSR12
