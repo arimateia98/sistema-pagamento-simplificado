@@ -38,7 +38,7 @@ class TransferenciaController extends Controller
         }
 
         return new JsonResponse(
-            $resposta['mensagem'], $status
+            ["resposta" => $resposta['mensagem']], $status
         );
 
     }
