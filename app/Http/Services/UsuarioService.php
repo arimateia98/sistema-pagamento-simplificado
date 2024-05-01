@@ -6,7 +6,6 @@ use App\Models\Usuario;
 
 class UsuarioService
 {
-
     public function store($usuario): bool
     {
         $novoUsuario = new Usuario();
@@ -28,5 +27,4 @@ class UsuarioService
     {
         return Usuario::truncate();
     }
-
 }

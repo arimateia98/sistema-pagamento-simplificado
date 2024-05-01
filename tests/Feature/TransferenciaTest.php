@@ -1,15 +1,16 @@
 <?php
 
-use Tests\TestCase;
+namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\Usuario;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TransferenciaTest extends TestCase
 {
-
     use refreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -18,7 +19,8 @@ class TransferenciaTest extends TestCase
         $this->faker = Faker::create();
     }
 
-    public function testTransferirComSucesso() {
+    public function testTransferirComSucesso()
+    {
 
         $usuarioTransferidor = new Usuario([
             'nome' => $this->faker->name,
@@ -45,7 +47,7 @@ class TransferenciaTest extends TestCase
             'id_receptor' =>  $usuarioReceptor->id,
             'valor_transferencia' => 50
         ];
-        $response = $this->postJson('/api/transferir',$arrayJson);
+        $response = $this->postJson('/api/transferir', $arrayJson);
         $response->assertStatus(200);
 
         /**
@@ -54,9 +56,8 @@ class TransferenciaTest extends TestCase
         $usuarioReceptor = Usuario::find(1);
         $usuarioTransferidor = Usuario::find(2);
 
-        $this->assertEquals(150,$usuarioTransferidor->saldo);
-        $this->assertEquals(250,$usuarioReceptor->saldo);
-
+        $this->assertEquals(150, $usuarioTransferidor->saldo);
+        $this->assertEquals(250, $usuarioReceptor->saldo);
     }
 
     public function testTransferirErroLojista()
@@ -87,15 +88,11 @@ class TransferenciaTest extends TestCase
             'valor_transferencia' => 50
         ];
 
-        $response = $this->postJson('/api/transferir',$arrayJson);
+        $response = $this->postJson('/api/transferir', $arrayJson);
         $response->assertStatus(400);
         $response->assertJson([
                 "resposta" => "Apenas usuários comuns podem realizar transfêrencias"
-            ]
-        );
-
-
-
+            ]);
     }
 
     public function testTransferirSaldoInsuficiente()
@@ -126,12 +123,11 @@ class TransferenciaTest extends TestCase
             'valor_transferencia' => 300
         ];
 
-        $response = $this->postJson('/api/transferir',$arrayJson);
+        $response = $this->postJson('/api/transferir', $arrayJson);
         $response->assertStatus(400);
         $response->assertJson([
                 "resposta" => "Saldo insuficiente para transfêrencia"
-            ]
-        );
+            ]);
     }
 
     public function testTransferirValorInvalido()
@@ -162,9 +158,8 @@ class TransferenciaTest extends TestCase
             'valor_transferencia' => -300
         ];
 
-        $response = $this->postJson('/api/transferir',$arrayJson);
+        $response = $this->postJson('/api/transferir', $arrayJson);
         $response->assertStatus(400);
         $response->assertJsonValidationErrors(['valor_transferencia']);
     }
-
 }

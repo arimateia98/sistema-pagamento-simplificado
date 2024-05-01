@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use App\Http\Services\UsuarioService;
 use App\Models\Usuario;
 use Faker\Factory as Faker;
@@ -46,8 +48,5 @@ class UsuarioServiceTest extends TestCase
 
         $this->expectException(PDOException::class);
         $service->store($usuarioComErro);
-
     }
-
-
 }

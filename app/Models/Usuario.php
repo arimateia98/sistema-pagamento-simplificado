@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
-    const TIPO_COMUM = 1;
-    const TIPO_LOJISTA = 2;
+    public const TIPO_COMUM = 1;
+    public const TIPO_LOJISTA = 2;
 
 
     protected $fillable = [
@@ -31,27 +32,26 @@ class Usuario extends Authenticatable
 
     protected $casts = ['password' => 'hashed',];
 
-    public function podeTransferir() : bool
+    public function podeTransferir(): bool
     {
         /**
          * o único tipo que pode transferir dinheiro
          * é o tipo 1, o tipo comum
          */
         return $this->tipo_usuario_id == self::TIPO_COMUM;
-
     }
 
     /*
      * retornará True
      * Se o usuario tiver saldo suficiente para sacar o dinheiro
      */
-    public function transferir(Float $valor) : void
+    public function transferir(float $valor): void
     {
         $this->validaTransferencia($valor);
         $this->saldo -= $valor;
     }
 
-    public function receber(Float $valor) : void
+    public function receber(float $valor): void
     {
         $this->saldo += $valor;
     }
@@ -61,7 +61,7 @@ class Usuario extends Authenticatable
      * @return void
      * @throws Exception
      */
-    public function validaTransferencia(Float $valor): void
+    public function validaTransferencia(float $valor): void
     {
         if (!$this->podeTransferir()) {
             throw new Exception("Apenas usuários comuns podem realizar transfêrencias");
@@ -73,6 +73,4 @@ class Usuario extends Authenticatable
             throw new Exception("Saldo insuficiente para transfêrencia");
         }
     }
-
-
 }

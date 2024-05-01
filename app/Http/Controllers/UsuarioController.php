@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\StoreUsuarioRequest;
 
-
 class UsuarioController extends Controller
 {
-
     protected UsuarioService $service;
 
     public function __construct(UsuarioService $usuarioService)
@@ -34,5 +32,4 @@ class UsuarioController extends Controller
     {
         return new JsonResponse($this->service->destroyAll(), 200);
     }
-
 }

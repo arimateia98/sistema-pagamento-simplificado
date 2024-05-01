@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Unit;
 
 use App\Models\Usuario;
@@ -41,7 +42,7 @@ class UsuarioTest extends TestCase
         $this->assertNotEmpty($usuario->senha);
     }
 
-    public function testPodeTransferir ()
+    public function testPodeTransferir()
     {
         $usuarioComum = new Usuario([
             'nome' => $this->faker->name,
@@ -63,7 +64,6 @@ class UsuarioTest extends TestCase
 
         $this->assertTrue($usuarioComum->podeTransferir());
         $this->assertFalse($usuarioLojista->podeTransferir());
-
     }
 
     public function testTransferir()
@@ -78,14 +78,13 @@ class UsuarioTest extends TestCase
         ]);
         $usuario->transferir(200);
 
-        $this->assertEquals(100,$usuario->saldo);
+        $this->assertEquals(100, $usuario->saldo);
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Saldo insuficiente para transfêrencia");
         $usuario->transferir(200);
-
     }
 
-    public function testeReceber ()
+    public function testeReceber()
     {
 
         $usuario = new Usuario([
