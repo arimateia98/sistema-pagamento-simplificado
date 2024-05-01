@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Classe de modelo que representa um usuário no sistema.
+ */
 class Usuario extends Authenticatable
 {
     use HasFactory;
@@ -25,25 +28,37 @@ class Usuario extends Authenticatable
         'senha',
     ];
 
+
     protected $hidden = [
         'senha',
         'remember_token',
     ];
 
-    protected $casts = ['password' => 'hashed',];
 
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
+    /**
+     * Verifica se o usuário pode realizar transferências.
+     * Apenas usuarios do tipo comum podem realizar transfêrencias
+     *
+     * @return bool Retorna true se o usuário puder transferir dinheiro, false caso contrário.
+     */
     public function podeTransferir(): bool
     {
         /**
-         * o único tipo que pode transferir dinheiro
-         * é o tipo 1, o tipo comum
+         * O único tipo que pode transferir dinheiro é o tipo 1, o tipo comum.
          */
         return $this->tipo_usuario_id == self::TIPO_COMUM;
     }
 
-    /*
-     * retornará True
-     * Se o usuario tiver saldo suficiente para sacar o dinheiro
+    /**
+     * Realiza a transferência de saldo para outro usuário.
+     *
+     * @param float $valor O valor a ser transferido.
+     * @return void
+     * @throws Exception Se o usuário não puder transferir dinheiro, se o valor for negativo ou se o saldo for insuficiente.
      */
     public function transferir(float $valor): void
     {
@@ -51,26 +66,35 @@ class Usuario extends Authenticatable
         $this->saldo -= $valor;
     }
 
+    /**
+     * Adiciona saldo ao usuário.
+     * Valor que vem de outro usuário
+     *
+     * @param float $valor O valor a ser adicionado ao saldo do usuário.
+     * @return void
+     */
     public function receber(float $valor): void
     {
         $this->saldo += $valor;
     }
 
     /**
-     * @param  $valor
+     * Valida se a transfêrencia é válida
+     *
+     * @param float $valor O valor da transferência a ser validado.
      * @return void
-     * @throws Exception
+     * @throws Exception Se o usuário não puder transferir dinheiro, se o valor for negativo ou se o saldo for insuficiente.
      */
     public function validaTransferencia(float $valor): void
     {
         if (!$this->podeTransferir()) {
-            throw new Exception("Apenas usuários comuns podem realizar transfêrencias");
+            throw new Exception("Apenas usuários comuns podem realizar transferências");
         }
         if ($valor < 0) {
             throw new Exception("Valor inválido para realizar a transação");
         }
         if ($this->saldo - $valor < 0) {
-            throw new Exception("Saldo insuficiente para transfêrencia");
+            throw new Exception("Saldo insuficiente para transferência");
         }
     }
 }

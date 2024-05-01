@@ -46,8 +46,8 @@ class TransferirServiceTest extends TestCase
         $usuarioTransferidor->save();
         $usuarioReceptor->save();
         $this->assertEquals([
-            "status" => true,
-            "mensagem" => "A Transfêrencia foi realizada com sucesso"
+            'status' => true,
+            'mensagem' => 'A transferência foi realizada com sucesso'
         ], $service->transferir($usuarioTransferidor->id, $usuarioReceptor->id, 200));
 
         //Buscando os usuarios com os saldos atualizados

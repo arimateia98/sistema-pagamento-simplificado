@@ -37,11 +37,11 @@ class NotificacaoTest extends TestCase
             'senha' => $this->faker->password,
         ]);
         $this->assertEquals(
-            'Você enviou uma transfêrencia para João de valor R$: 50',
+            'Você enviou uma transferência para João de valor R$: 50',
             NotificacaoService::getMensagemEnvio($usuarioReceptor, 50)
         );
         $this->assertEquals(
-            'Você recebeu uma transfêrencia de José de valor R$: 50',
+            'Você recebeu uma transferência de José de valor R$: 50',
             NotificacaoService::getMensagemRecebimento($usuarioTransferidor, 50)
         );
 

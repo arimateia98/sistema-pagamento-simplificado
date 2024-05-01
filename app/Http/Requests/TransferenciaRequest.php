@@ -10,6 +10,13 @@ use Illuminate\Http\JsonResponse;
 
 class TransferenciaRequest extends FormRequest
 {
+    /**
+     * Manipula a falha na validação da solicitação.
+     *
+     * @param Validator $validator O validador que contém os erros de validação.
+     * @return void
+     * @throws HttpResponseException Em caso de falha na validação, uma exceção com a resposta JSON é lançada.
+     */
     protected function failedValidation(Validator $validator)
     {
         $response = new JsonResponse(
