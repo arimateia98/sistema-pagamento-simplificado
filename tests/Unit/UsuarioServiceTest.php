@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Http\Services\UsuarioService;
 use App\Models\Usuario;
 use Faker\Factory as Faker;
+use PDOException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
