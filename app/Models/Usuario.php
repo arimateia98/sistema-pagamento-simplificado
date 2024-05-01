@@ -12,6 +12,7 @@ class Usuario extends Authenticatable
     use HasFactory, Notifiable;
 
     const TIPO_COMUM = 1;
+    const TIPO_LOJISTA = 2;
 
 
     protected $fillable = [

@@ -2,10 +2,25 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class StoreUsuarioRequest extends FormRequest
 {
+
+    protected function failedValidation(Validator $validator)
+    {
+        $response = new JsonResponse(
+            [
+                'message' => 'Os dados fornecidos são inválidos.',
+                'errors' => $validator->errors(),
+            ], 400
+        );
+
+        throw new HttpResponseException($response);
+    }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -43,7 +58,7 @@ class StoreUsuarioRequest extends FormRequest
             'tipo_usuario_id.required' => 'O campo tipo de usuário é obrigatório.',
             'tipo_usuario_id.exists' => 'O tipo de usuário selecionado é inválido.',
             'senha.required' => 'O campo senha é obrigatório.',
-            'senha.min' => 'aaaaaaaaaaaaaaaaaaaaaaa.',
+            'senha.min' => 'O campo senha deve ter ao menos 6 caracteres.',
         ];
     }
 }
