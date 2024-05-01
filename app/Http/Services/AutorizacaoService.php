@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 class AutorizacaoService
 {
-
     public static function obterAutorizacao()
     {
         try {
@@ -23,5 +22,4 @@ class AutorizacaoService
             throw new Exception('Erro ao obter os dados da API externa: ' . $e->getMessage());
         }
     }
-
 }

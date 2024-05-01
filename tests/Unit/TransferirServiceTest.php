@@ -1,11 +1,12 @@
 <?php
 
+namespace Tests\Unit;
+
 use App\Http\Services\TransferenciaService;
 use App\Models\Usuario;
 use Tests\TestCase;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 
 class TransferirServiceTest extends TestCase
 {
@@ -55,6 +56,4 @@ class TransferirServiceTest extends TestCase
         $this->assertEquals(200, $usuarioTransferidor->saldo);
         $this->assertEquals(200, $usuarioReceptor->saldo);
     }
-
-
 }

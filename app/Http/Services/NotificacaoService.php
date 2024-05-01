@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Http;
 
 class NotificacaoService
 {
-
-
     public static function enviarNotificacao($idTransferidor, $idReceptor, $valor): void
     {
         $usuarioTransferidor = Usuario::find($idTransferidor);
@@ -20,8 +18,6 @@ class NotificacaoService
 
         self::enviaEmail($usuarioTransferidor->email, $mensagemEnvio);
         self::enviaEmail($usuarioReceptor->email, $mensagemRecebimento);
-
-
     }
 
     /**
@@ -49,7 +45,8 @@ class NotificacaoService
         try {
             // Fazendo uma requisição POST para a API externa
             $response = Http::post(
-                'https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6', [
+                'https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6',
+                [
                     'email' => $emailUsuario,
                     'mensagem' => $mensagemEnvio
                 ]
@@ -64,5 +61,4 @@ class NotificacaoService
             throw new Exception('Erro ao enviar Notificação: ' . $e->getMessage());
         }
     }
-
 }

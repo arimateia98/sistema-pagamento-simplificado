@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-
 use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -11,14 +10,14 @@ use Illuminate\Http\JsonResponse;
 
 class TransferenciaRequest extends FormRequest
 {
-
     protected function failedValidation(Validator $validator)
     {
         $response = new JsonResponse(
             [
             'message' => 'Os dados fornecidos são inválidos.',
             'errors' => $validator->errors(),
-            ], 400
+            ],
+            400
         );
 
         throw new HttpResponseException($response);

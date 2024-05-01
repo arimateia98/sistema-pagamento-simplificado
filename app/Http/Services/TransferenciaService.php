@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 
 class TransferenciaService
 {
-
     public function transferir($idTransferidor, $idReceptor, $valor)
     {
         $usuarioTransferidor = Usuario::find($idTransferidor);
@@ -63,5 +62,4 @@ class TransferenciaService
             "mensagem" => "A Transfêrencia foi realizada com sucesso"
         ];
     }
-
 }

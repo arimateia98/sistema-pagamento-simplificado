@@ -9,14 +9,14 @@ use Illuminate\Http\JsonResponse;
 
 class StoreUsuarioRequest extends FormRequest
 {
-
     protected function failedValidation(Validator $validator)
     {
         $response = new JsonResponse(
             [
                 'message' => 'Os dados fornecidos são inválidos.',
                 'errors' => $validator->errors(),
-            ], 400
+            ],
+            400
         );
 
         throw new HttpResponseException($response);

@@ -1,14 +1,16 @@
 <?php
 
+namespace Tests\Feature;
+
 use App\Models\Usuario;
 use Faker\Factory as Faker;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
 class UsuarioTest extends TestCase
 {
     use refreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -18,7 +20,8 @@ class UsuarioTest extends TestCase
         $this->faker = Faker::create();
     }
 
-    public function testStoreUsuario() {
+    public function testStoreUsuario()
+    {
         $usuario = [
             'nome' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
@@ -28,11 +31,12 @@ class UsuarioTest extends TestCase
             'senha' => $this->faker->password,
         ];
 
-        $response = $this->postJson('/api/usuarios',$usuario);
+        $response = $this->postJson('/api/usuarios', $usuario);
         $response->assertStatus(200);
     }
 
-    public function testStoreUsuarioErro() {
+    public function testStoreUsuarioErro()
+    {
         $usuario = [
             'nome' => $this->faker->name,
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
@@ -40,10 +44,8 @@ class UsuarioTest extends TestCase
             'senha' => $this->faker->password,
         ];
 
-        $response = $this->postJson('/api/usuarios',$usuario);
+        $response = $this->postJson('/api/usuarios', $usuario);
         $response->assertStatus(400);
         $response->assertJsonValidationErrors(['email','documento']);
-
     }
-
 }
