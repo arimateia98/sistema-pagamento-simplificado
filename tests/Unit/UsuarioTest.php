@@ -80,7 +80,7 @@ class UsuarioTest extends TestCase
 
         $this->assertEquals(100, $usuario->saldo);
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage("Saldo insuficiente para transfêrencia");
+        $this->expectExceptionMessage('Saldo insuficiente para transferência');
         $usuario->transferir(200);
     }
 
@@ -127,7 +127,7 @@ class UsuarioTest extends TestCase
         ]);
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage("Apenas usuários comuns podem realizar transfêrencias");
+        $this->expectExceptionMessage('Apenas usuários comuns podem realizar transferências');
         $usuario->transferir(200);
     }
 }

@@ -91,8 +91,7 @@ class TransferenciaTest extends TestCase
         $response = $this->postJson('/api/transferir', $arrayJson);
         $response->assertStatus(400);
         $response->assertJson([
-                "resposta" => "Apenas usuários comuns podem realizar transfêrencias"
-            ]);
+            "resposta" => "Apenas usuários comuns podem realizar transferências"            ]);
     }
 
     public function testTransferirSaldoInsuficiente()
@@ -126,7 +125,7 @@ class TransferenciaTest extends TestCase
         $response = $this->postJson('/api/transferir', $arrayJson);
         $response->assertStatus(400);
         $response->assertJson([
-                "resposta" => "Saldo insuficiente para transfêrencia"
+            "resposta" => "Saldo insuficiente para transferência"
             ]);
     }
 
