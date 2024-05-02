@@ -13,6 +13,8 @@ class CreateUsersTable extends Migration
     public function up(): void
     {
 
+        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('tipos_usuario');
 
         Schema::create(
             'tipos_usuario', function (Blueprint $table) {
@@ -74,9 +76,11 @@ class CreateUsersTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuario');
-        Schema::dropIfExists('tokens_reset_senha');
-        Schema::dropIfExists('sessoes');
+
+        Schema::dropIfExists('usuarios');
         Schema::dropIfExists('tipos_usuario');
+
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
     }
 }
