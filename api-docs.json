@@ -1,0 +1,299 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Gestão de Usuários e Transferências",
+        "version": "1.0.0",
+        "description": "API para gerenciamento de usuários e realização de transferências financeiras entre eles"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Servidor de desenvolvimento"
+        }
+    ],
+    "paths": {
+        "/usuarios": {
+            "post": {
+                "tags": ["Usuários"],
+                "summary": "Cria um novo usuário",
+                "description": "Registra um novo usuário no sistema com os dados fornecidos.",
+                "operationId": "createUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreUsuarioRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Usuario"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Os dados fornecidos são inválidos."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo nome é obrigatório."
+                                                    }
+                                                },
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo email é obrigatório."
+                                                    }
+                                                },
+                                                "documento": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo documento é obrigatório."
+                                                    }
+                                                },
+                                                "tipo_usuario_id": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo tipo de usuário é obrigatório."
+                                                    }
+                                                },
+                                                "senha": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo senha é obrigatório."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Usuários"],
+                "summary": "Obtém todos os usuários",
+                "description": "Retorna uma lista de todos os usuários registrados no sistema.",
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuários recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Usuario"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Usuários"],
+                "summary": "Exclui todos os usuários",
+                "description": "Remove todos os usuários registrados no sistema.",
+                "operationId": "deleteAllUsers",
+                "responses": {
+                    "204": {
+                        "description": "Todos os usuários foram excluídos"
+                    }
+                }
+            }
+        },
+        "/transferir": {
+            "post": {
+                "tags": ["Transferências"],
+                "summary": "Realiza uma transferência entre dois usuários",
+                "description": "Endpoint para realizar uma transferência financeira entre dois usuários. Em caso de sucesso, uma notificação é enviada para ambos os usuários.",
+                "operationId": "transfer",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferenciaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Transferência realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "resposta": {
+                                            "type": "string",
+                                            "example": "Transferência concluída com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na transferência",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Os dados fornecidos são inválidos."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id_transferidor": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo do transferidor é obrigatório."
+                                                    }
+                                                },
+                                                "id_receptor": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo do receptor é obrigatório."
+                                                    }
+                                                },
+                                                "valor_transferencia": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O valor da transferência deve ser maior ou igual a zero."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreUsuarioRequest": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "description": "Nome completo do usuário",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Endereço de e-mail do usuário",
+                        "example": "john.doe@example.com"
+                    },
+                    "documento": {
+                        "type": "string",
+                        "description": "Documento de identificação do usuário",
+                        "example": "12345678900"
+                    },
+                    "tipo_usuario_id": {
+                        "type": "integer",
+                        "description": "Identificador do tipo de usuário",
+                        "example": 1
+                    },
+                    "senha": {
+                        "type": "string",
+                        "description": "Senha de acesso do usuário",
+                        "example": "password123"
+                    }
+                },
+                "required": ["nome", "email", "documento", "tipo_usuario_id", "senha"]
+            },
+            "Usuario": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "john.doe@example.com"
+                    },
+                    "documento": {
+                        "type": "string",
+                        "example": "12345678900"
+                    },
+                    "tipo_usuario_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "saldo": {
+                        "type": "number",
+                        "format": "double",
+                        "example": 1000.50
+                    },
+                    "senha": {
+                        "type": "string",
+                        "example": "password123"
+                    }
+                }
+            },
+            "TransferenciaRequest": {
+                "type": "object",
+                "required": ["id_transferidor", "id_receptor", "valor_transferencia"],
+                "properties": {
+                    "id_transferidor": {
+                        "type": "integer",
+                        "description": "ID do usuário que está transferindo. O transferidor especificado deve existir no banco de dados.",
+                        "example": 1
+                    },
+                    "id_receptor": {
+                        "type": "integer",
+                        "description": "ID do usuário que receberá a transferência. O receptor especificado deve existir no banco de dados.",
+                        "example": 2
+                    },
+                    "valor_transferencia": {
+                        "type": "number",
+                        "format": "float",
+                        "description": "Valor a ser transferido. Deve ser um número positivo.",
+                        "example": 100.50
+                    }
+                }
+            }
+        }
+    }
+}
