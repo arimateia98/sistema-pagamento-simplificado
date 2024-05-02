@@ -8,7 +8,6 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
 - PHP 8.2
 - Composer (gerenciador de dependências para PHP)
-- Servidor web local (como Apache ou Nginx)
 
 ## Instalação do Projeto
 
