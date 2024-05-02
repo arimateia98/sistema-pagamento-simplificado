@@ -69,7 +69,7 @@ class UsuarioTest extends TestCase
     public function testTransferir()
     {
         $usuario = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
@@ -88,7 +88,7 @@ class UsuarioTest extends TestCase
     {
 
         $usuario = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,

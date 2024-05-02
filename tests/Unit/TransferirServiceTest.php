@@ -27,7 +27,7 @@ class TransferirServiceTest extends TestCase
     {
         $service = new TransferenciaService();
         $usuarioTransferidor = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
@@ -36,7 +36,7 @@ class TransferirServiceTest extends TestCase
         ]);
 
         $usuarioReceptor = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,

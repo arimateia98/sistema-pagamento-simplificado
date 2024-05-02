@@ -28,7 +28,7 @@ class UsuarioServiceTest extends TestCase
     {
         $service = new UsuarioService();
         $usuario = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
@@ -42,7 +42,7 @@ class UsuarioServiceTest extends TestCase
 
         //Usuario com dados faltantes
         $usuarioComErro = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'saldo' => $this->faker->randomFloat(2, 0, 1000),
             'senha' => $this->faker->password,
         ]);
