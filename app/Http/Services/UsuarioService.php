@@ -22,6 +22,7 @@ class UsuarioService
         $novoUsuario->email = $usuario->email;
         $novoUsuario->documento = $usuario->documento;
         $novoUsuario->tipo_usuario_id = $usuario->tipo_usuario_id;
+        if(!isset($usuario->saldo)) $usuario->saldo = 0;
         $novoUsuario->saldo = $usuario->saldo;
         $novoUsuario->senha = bcrypt($usuario->senha);
         return $novoUsuario->save();
