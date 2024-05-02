@@ -44,8 +44,8 @@ Para iniciar o servidor  localmente, execute o seguinte comando:
 
 Para executar os testes unitários basta executar o comando:
 
-    .\vendor\bin\phpunit
-
+    php artisan test
+    
 Para verificar o nível de cobertura dos testes basta abrir os arquivos
 dashboard.html e index.html que se encontram dentro da pasta coverage
 
