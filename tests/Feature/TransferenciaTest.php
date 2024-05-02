@@ -23,21 +23,21 @@ class TransferenciaTest extends TestCase
     {
 
         $usuarioTransferidor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioReceptor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioReceptor->save();
@@ -63,21 +63,21 @@ class TransferenciaTest extends TestCase
     public function testTransferirErroLojista()
     {
         $usuarioTransferidor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_LOJISTA,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioReceptor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_LOJISTA,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
         $usuarioReceptor->save();
         $usuarioTransferidor->save();
@@ -97,21 +97,21 @@ class TransferenciaTest extends TestCase
     public function testTransferirSaldoInsuficiente()
     {
         $usuarioTransferidor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioReceptor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
         $usuarioReceptor->save();
         $usuarioTransferidor->save();
@@ -132,21 +132,21 @@ class TransferenciaTest extends TestCase
     public function testTransferirValorInvalido()
     {
         $usuarioTransferidor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioReceptor = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 200,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
         $usuarioReceptor->save();
         $usuarioTransferidor->save();

@@ -28,12 +28,12 @@ class UsuarioServiceTest extends TestCase
     {
         $service = new UsuarioService();
         $usuario = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => $this->faker->randomFloat(2, 0, 1000), // Gera um saldo aleatório entre 0 e 1000
-            'senha' => $this->faker->password, // Gera uma senha criptografada aleatória
+            'senha' => $this->faker->password(), // Gera uma senha criptografada aleatória
         ]);
 
 
@@ -42,9 +42,9 @@ class UsuarioServiceTest extends TestCase
 
         //Usuario com dados faltantes
         $usuarioComErro = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'saldo' => $this->faker->randomFloat(2, 0, 1000),
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $this->expectException(PDOException::class);

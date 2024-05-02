@@ -23,12 +23,12 @@ class UsuarioTest extends TestCase
     public function testStoreUsuario()
     {
         $usuario = [
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => $this->faker->randomFloat(2, 0, 1000),
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ];
 
         $response = $this->postJson('/api/usuarios', $usuario);
@@ -38,10 +38,10 @@ class UsuarioTest extends TestCase
     public function testStoreUsuarioErro()
     {
         $usuario = [
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => $this->faker->randomFloat(2, 0, 1000),
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ];
 
         $response = $this->postJson('/api/usuarios', $usuario);
