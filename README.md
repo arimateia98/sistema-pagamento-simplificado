@@ -36,4 +36,16 @@ Para iniciar um servidor de desenvolvimento local, execute o seguinte comando:
 
     php artisan serve
 
+Para executar os testes unitários basta executar o comando:
+
+    .\vendor\bin\phpunit
+
+Para verificar o nível de cobertura dos testes basta abrir os arquivos
+dashboard.html e index.html que se encontram dentro da pasta coverage
+
+Para acessar a documentação da API, basta ir para a rota
+
+    http://localhost:8000/api/documentation
+
+
 
