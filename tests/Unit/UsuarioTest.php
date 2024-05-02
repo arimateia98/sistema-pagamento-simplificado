@@ -45,21 +45,21 @@ class UsuarioTest extends TestCase
     public function testPodeTransferir()
     {
         $usuarioComum = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => $this->faker->randomFloat(2, 0, 1000),
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioLojista = new Usuario([
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail,
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_LOJISTA,
             'saldo' => $this->faker->randomFloat(2, 0, 1000),
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $this->assertTrue($usuarioComum->podeTransferir());
@@ -70,11 +70,11 @@ class UsuarioTest extends TestCase
     {
         $usuario = new Usuario([
             'nome' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 300,
-            'senha' => $this->faker->password, // Gera uma senha criptografada aleatória
+            'senha' => $this->faker->password(), // Gera uma senha criptografada aleatória
         ]);
         $usuario->transferir(200);
 
@@ -89,11 +89,11 @@ class UsuarioTest extends TestCase
 
         $usuario = new Usuario([
             'nome' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 300,
-            'senha' => $this->faker->password, // Gera uma senha criptografada aleatória
+            'senha' => $this->faker->password(), // Gera uma senha criptografada aleatória
         ]);
 
         $usuario->receber(200);
@@ -103,12 +103,12 @@ class UsuarioTest extends TestCase
     public function testExceptionValorInvalido()
     {
         $usuario = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 300,
-            'senha' => $this->faker->password, // Gera uma senha criptografada aleatória
+            'senha' => $this->faker->password(), // Gera uma senha criptografada aleatória
         ]);
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Valor inválido para realizar a transação");
@@ -118,12 +118,12 @@ class UsuarioTest extends TestCase
     public function testExceptionNaoPodeTransferir()
     {
         $usuario = new Usuario([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'nome' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'), // Supondo que o campo seja um CPF
             'tipo_usuario_id' => Usuario::TIPO_LOJISTA,
             'saldo' => 300,
-            'senha' => $this->faker->password, // Gera uma senha criptografada aleatória
+            'senha' => $this->faker->password(), // Gera uma senha criptografada aleatória
         ]);
 
         $this->expectException(Exception::class);

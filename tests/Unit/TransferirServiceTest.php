@@ -28,20 +28,20 @@ class TransferirServiceTest extends TestCase
         $service = new TransferenciaService();
         $usuarioTransferidor = new Usuario([
             'nome' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 400,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
 
         $usuarioReceptor = new Usuario([
             'nome' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->safeEmail(),
             'documento' => $this->faker->unique()->numerify('###########'),
             'tipo_usuario_id' => Usuario::TIPO_COMUM,
             'saldo' => 0,
-            'senha' => $this->faker->password,
+            'senha' => $this->faker->password(),
         ]);
         $usuarioTransferidor->save();
         $usuarioReceptor->save();
