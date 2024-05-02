@@ -25,9 +25,13 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
 ## Configuração do Ambiente
 
-2. Copie o arquivo `.env.example` e renomeie-o para `.env`. 
-3. Este arquivo contém variáveis de ambiente para configuração, como conexões de banco de dados.
-3. Gere uma chave de aplicativo executando o seguinte comando:
+3. Copie o arquivo `.env.example` e renomeie-o para `.env`. 
+4. Este arquivo contém variáveis de ambiente para configuração, como conexões de banco de dados.
+5. Execute as migrations
+   ```
+   php artisan migrate
+   ```
+7. Gere uma chave de aplicativo executando o seguinte comando:
 
     ```
     php artisan key:generate
