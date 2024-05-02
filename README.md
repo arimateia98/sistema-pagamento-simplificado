@@ -10,10 +10,13 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina:
 - Composer (gerenciador de dependências para PHP)
 - Servidor web local (como Apache ou Nginx)
 
-## Instalação do Laravel
+## Instalação do Projeto
 
-1. Abra o terminal ou prompt de comando.
-2. Execute o seguinte comando para instalar o Laravel via Composer:
+1. Faça o clone do projeto
+    ```
+   git clone https://github.com/arimateia98/sistema-pagamento-simplificado.git
+    ```
+2. Execute o seguinte comando para instalar as dependências do projeto via Composer:
 
     ```
     composer install
@@ -30,9 +33,9 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina:
     php artisan key:generate
     ```
 
-## Execução do Servidor de Desenvolvimento
+## Execução do Servidor 
 
-Para iniciar um servidor de desenvolvimento local, execute o seguinte comando:
+Para iniciar o servidor  localmente, execute o seguinte comando:
 
     php artisan serve
 
